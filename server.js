@@ -1,5 +1,5 @@
 const app = require('./index')
-const port = process.env.port || 8000;
+const port = process.env.port;
 
 
 app.listen(port, (err) => {
