@@ -1,7 +1,7 @@
 const app = require('./index')
-const port = 8000
+const port = process.env.PORT || 5000;
 
-app.listen(port, (err) => {
+app.listen(port, '0.0.0.0', (err) => {
   if (err) {
     throw new Error('Something bad happened...');
 	}
