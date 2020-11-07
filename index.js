@@ -319,13 +319,19 @@ const upload = multer({
 });
 
 app.post('/uploaddufichier', upload.single('file'), function (req, res, next) {
-  fs.rename(req.file.path, '../tuktuktravel/public/' + req.file.originalname, function(err){
-    if (err) {
-      res.redirect(targetUrl)
-      res.send('problème durant le transfert');
-    } else {
-        res.send('Fichier transféré avec succès');
+  fs.access('../tuktuktravel/public/'+ req.file.originalname, fs.constants.F_OK, (err) => {
+    console.log(`${req.file.name} ${err ? 'does not exist' : 'exists'}`);
+    if (!err) {
+      fs.unlinkSync('../tuktuktravel/public/'+ req.file.originalname);
     }
+  
+    fs.rename(req.file.path, '../tuktuktravel/public/' + req.file.originalname, function(err) {
+      if (err) throw err;
+      //res.redirect(targetUrl)
+      //res.send('problème durant le transfert');
+      res.send('Fichier transféré avec succès');
+    
+    });
   });
 })
 
