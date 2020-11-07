@@ -319,13 +319,13 @@ const upload = multer({
 });
 
 app.post('/uploaddufichier', upload.single('file'), function (req, res, next) {
-  fs.access('../tuktuktravel/public/'+ req.file.originalname, fs.constants.F_OK, (err) => {
+  fs.access('..client/build/public/'+ req.file.originalname, fs.constants.F_OK, (err) => {
     console.log(`${req.file.name} ${err ? 'does not exist' : 'exists'}`);
     if (!err) {
-      fs.unlinkSync('../tuktuktravel/public/'+ req.file.originalname);
+      fs.unlinkSync('..client/build/public/'+ req.file.originalname);
     }
   
-    fs.rename(req.file.path, '../tuktuktravel/public/' + req.file.originalname, function(err) {
+    fs.rename(req.file.path, '../client/build/public/' + req.file.originalname, function(err) {
       if (err) throw err;
       //res.redirect(targetUrl)
       //res.send('problème durant le transfert');
