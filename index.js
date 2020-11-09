@@ -15,7 +15,7 @@ const verifyToken = require('./verifyToken');
 const key = require('./key');
 const bcrypt = require('bcrypt'); // npm install bcrypt
 const path = require('path');
-const axios = require('axios');
+//const axios = require('axios');
 
 //const port = 8000;
 
